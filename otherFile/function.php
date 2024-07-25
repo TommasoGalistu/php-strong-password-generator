@@ -4,6 +4,7 @@ function generatePage($data, $array){
     // if($data['lunghezzaPassw'] >= 8 && $data['lunghezzaPassw'] <=32){
         $arrayFiltred = [];
         $passw = [];
+        $ripetiCaratteri = false;
         if(isset($data['lett'])){
             array_push($arrayFiltred, $array['lettere']);
           }
@@ -13,14 +14,38 @@ function generatePage($data, $array){
         if(isset($data['simb'])){
             array_push($arrayFiltred, $array['simboli']);
           }
-        
-          
-        
-        for ($i=0; $i < $data['lunghezzaPassw']; $i++) { 
-            $randomKey = array_rand($arrayFiltred);
-            $elScelto = rand(0, count($arrayFiltred[$randomKey]) - 1);
-            array_push($passw,$arrayFiltred[$randomKey][$elScelto]) ;
-            
+        if(isset($data['caratteri'])){
+            $ripetiCaratteri = $data['caratteri'];
+        }
+
+        // se l'utente non sceglie niente uso l'array di partenza
+        if(!$arrayFiltred){
+            $arrayFiltred = $array;
+        }
+         
+        if($ripetiCaratteri){
+            for ($i=0; $i < $data['lunghezzaPassw']; $i++) { 
+                // coordinata chiave
+                $randomKey = array_rand($arrayFiltred);
+                // coordinata valore
+                $elScelto = rand(0, count($arrayFiltred[$randomKey]) - 1);
+                array_push($passw,$arrayFiltred[$randomKey][$elScelto]) ;
+                
+            }
+
+        }else{
+            while(count($passw) < $data['lunghezzaPassw']) { 
+                // coordinata chiave
+                $randomKey = array_rand($arrayFiltred);
+                // coordinata valore
+                $elScelto = rand(0, count($arrayFiltred[$randomKey]) - 1);
+                $elementoArray = $arrayFiltred[$randomKey][$elScelto];
+                if(!in_array($elementoArray , $passw)){
+
+                    array_push($passw,$elementoArray) ;
+                }
+                
+            }
         }
         
         // l'array diventa stringa

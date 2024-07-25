@@ -26,7 +26,7 @@ $password = '';
 if(isset($data) && !empty($data) && $data['lunghezzaPassw']){
     
     $password = generatePage($data, $datiPassw);
-    
+
     if($password){
         session_start();
         $_SESSION['password'] = $password;
@@ -62,7 +62,7 @@ if(isset($data) && !empty($data) && $data['lunghezzaPassw']){
                         <input  name="lunghezzaPassw" type="number" class="mb-3"><br>
                         <input id="si" name="caratteri" value="true" type="radio">
                         <label for="si">Si</label>
-                        <input id="no" name="caratteri" value="false" type="radio">
+                        <input id="no" name="caratteri" value="" type="radio">
                         <label for="no">No</label><br>
                         <input id="lettere" name="lett" value="lettere" type="checkbox" >
                         <label for="lettere" class="mt-3">Lettere</label><br>
