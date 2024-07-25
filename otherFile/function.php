@@ -1,19 +1,34 @@
 <?php
 
-function generatePage($lunghezza, $array){
-    if($lunghezza >= 8 && $lunghezza <=32){
+function generatePage($data, $array){
+    // if($data['lunghezzaPassw'] >= 8 && $data['lunghezzaPassw'] <=32){
+        $arrayFiltred = [];
         $passw = [];
-        $arrScelto = rand(0, 3);
-        for ($i=0; $i < $lunghezza; $i++) { 
-            $arrScelto = $arrScelto <= 3 ? $arrScelto : 0 ;
-            $elScelto = rand(0, count($array) - 1);
-            array_push($passw,$array[$arrScelto][$elScelto]) ;
-            $arrScelto++;
+        if(isset($data['lett'])){
+            array_push($arrayFiltred, $array['lettere']);
+            
+          }
+        if(isset($data['num'])){
+            array_push($arrayFiltred, $array['number']);
+            
+          }
+        if(isset($data['simb'])){
+            array_push($arrayFiltred, $array['simboli']);
+            
+          }
+        
+          
+        
+        for ($i=0; $i < $data['lunghezzaPassw']; $i++) { 
+            $randomKey = array_rand($arrayFiltred);
+            $elScelto = rand(0, count($arrayFiltred[$randomKey]) - 1);
+            array_push($passw,$arrayFiltred[$randomKey][$elScelto]) ;
+            
         }
         
-
+        // l'array diventa stringa
         return implode($passw);
-    }
+    // }
     
     
 };

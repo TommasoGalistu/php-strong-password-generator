@@ -2,19 +2,16 @@
 // dati speciali
 // !?&%$<>^+-*/()[]{}@#_=
 $datiPassw = [
-    [
+    'lettere' => [ 
         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
-        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-    ],
-    [
-        0 , 1, 2, 3, 4, 5, 6, 7, 8, 9
-    ],
-    [
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
+        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
         'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
     ],
+    'number' => [
+        0 , 1, 2, 3, 4, 5, 6, 7, 8, 9
+    ],
     
-    [
+    'simboli' => [
         '!', '?', '&', '%', '$', '<', '>', '^', '+', '-', '*', '/', '(', ')', 
         '[', ']', '{', '}', '@', '#', '_', '='
     ]
@@ -23,14 +20,19 @@ $datiPassw = [
 include __DIR__ . "/otherFile/function.php";   
 
 $data = $_GET;
-
+var_dump($data);
 // se è settata e l'utente scrive qualcosa entra
 $password = '';
 if(isset($data) && !empty($data) && $data['lunghezzaPassw']){
-    $password = generatePage($data['lunghezzaPassw'], $datiPassw);
-    session_start();
-    $_SESSION['password'] = $password;
-    header("Location: ./otherFile/passwPage.php");
+    
+    $password = generatePage($data, $datiPassw);
+    
+    if($password){
+        session_start();
+        $_SESSION['password'] = $password;
+        header("Location: ./otherFile/passwPage.php");
+
+    }
 }
 
 ?>
@@ -62,11 +64,11 @@ if(isset($data) && !empty($data) && $data['lunghezzaPassw']){
                         <label for="si">Si</label>
                         <input id="no" name="caratteri" value="false" type="radio">
                         <label for="no">No</label><br>
-                        <input id="lettere" name="tipo" value="lettere" type="checkbox" >
+                        <input id="lettere" name="lett" value="lettere" type="checkbox" >
                         <label for="lettere" class="mt-3">Lettere</label><br>
-                        <input id="numeri" name="tipo" value="numeri" type="checkbox">
+                        <input id="numeri" name="num" value="number" type="checkbox">
                         <label for="numeri">Numeri</label><br>
-                        <input id="simboli" name="tipo" value="simboli" type="checkbox">
+                        <input id="simboli" name="simb" value="simboli" type="checkbox">
                         <label for="simboli" >Simboli</label>
                         <div class="mt-3">
 
