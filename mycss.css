@@ -25,6 +25,6 @@ span {
 
 /* css della pagina passw */
 a {
-  outline: none;
+  text-decoration: none;
   color: white;
 }

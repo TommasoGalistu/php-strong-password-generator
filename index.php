@@ -23,16 +23,21 @@ $data = $_GET;
 
 // se è settata e l'utente scrive qualcosa entra
 $password = '';
-if(isset($data) && !empty($data) && $data['lunghezzaPassw']){
+$errorePassword = false;
+if(isset($data) && !empty($data)){
     
     $password = generatePage($data, $datiPassw);
-
+    
     if($password){
+        $errorePassword = false;
         session_start();
         $_SESSION['password'] = $password;
         $_SESSION['lunghezza'] = strlen($password);
+        
         header("Location: ./otherFile/passwPage.php");
 
+    }else{
+        $errorePassword = true;
     }
 }
 
@@ -47,9 +52,11 @@ if(isset($data) && !empty($data) && $data['lunghezzaPassw']){
             </div>
             <div class="row  sfondoBlu mb-3">
                 <div class="col d-flex align-items-center">
-                    <span>Generare una password di lunghezza compresa fra 8 e 32 
-                        <?php echo $password ? "passw: '$password'" : ''; ?>
-                    </span>
+                    <?php if(!$errorePassword): ?>
+                    <span>Generare una password di lunghezza compresa fra 8 e 32</span>
+                    <?php else: ?>
+                    <span>ERRORE!!! Generare una password di lunghezza compresa fra 8 e 32</span>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="row sfondoTabella">

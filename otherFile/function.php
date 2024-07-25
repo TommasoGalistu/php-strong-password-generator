@@ -1,11 +1,14 @@
 <?php
 
 function generatePage($data, $array){
+    
     if($data['lunghezzaPassw'] >= 8 && $data['lunghezzaPassw'] <=32){
+        // array finale
         $arrayFiltred = [];
         $passw = [];
         $ripetiCaratteri = false;
-        $lunghezzaArray = 0;
+        $lunghezzaArrayFiltred = 0;
+        // selezione filtri utente
         if(isset($data['lett'])){
             array_push($arrayFiltred, $array['lettere']);
           }
@@ -25,7 +28,7 @@ function generatePage($data, $array){
         }
         // calcolo la lunghezza degli array
         foreach($arrayFiltred as $key => $value){
-            $lunghezzaArray += count($value) - 1;
+            $lunghezzaArrayFiltred += count($value) - 1;
         }
          
         if($ripetiCaratteri){
@@ -34,18 +37,20 @@ function generatePage($data, $array){
                 $randomKey = array_rand($arrayFiltred);
                 // coordinata valore
                 $elScelto = rand(0, count($arrayFiltred[$randomKey]) - 1);
-                array_push($passw,$arrayFiltred[$randomKey][$elScelto]) ;
+                $elementoArray = $arrayFiltred[$randomKey][$elScelto];
+                array_push($passw, $elementoArray) ;
                 
             }
 
         }else{
             
-            while(count($passw) < $data['lunghezzaPassw'] && $lunghezzaArray > count($passw) - 1) { 
+            while(count($passw) < $data['lunghezzaPassw'] && count($passw) - 1 < $lunghezzaArrayFiltred) { 
                 // coordinata chiave
                 $randomKey = array_rand($arrayFiltred);
                 // coordinata valore
                 $elScelto = rand(0, count($arrayFiltred[$randomKey]) - 1);
                 $elementoArray = $arrayFiltred[$randomKey][$elScelto];
+                // se non è già dentro l'array lo pusho
                 if(!in_array($elementoArray , $passw)){
 
                     array_push($passw,$elementoArray) ;
@@ -54,7 +59,7 @@ function generatePage($data, $array){
             }
         }
         
-        // l'array diventa stringa
+        // ritorno l'array che diventa stringa
         return implode($passw);
     }
     
