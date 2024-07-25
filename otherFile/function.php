@@ -1,10 +1,11 @@
 <?php
 
 function generatePage($data, $array){
-    // if($data['lunghezzaPassw'] >= 8 && $data['lunghezzaPassw'] <=32){
+    if($data['lunghezzaPassw'] >= 8 && $data['lunghezzaPassw'] <=32){
         $arrayFiltred = [];
         $passw = [];
         $ripetiCaratteri = false;
+        $lunghezzaArray = 0;
         if(isset($data['lett'])){
             array_push($arrayFiltred, $array['lettere']);
           }
@@ -22,6 +23,10 @@ function generatePage($data, $array){
         if(!$arrayFiltred){
             $arrayFiltred = $array;
         }
+        // calcolo la lunghezza degli array
+        foreach($arrayFiltred as $key => $value){
+            $lunghezzaArray += count($value) - 1;
+        }
          
         if($ripetiCaratteri){
             for ($i=0; $i < $data['lunghezzaPassw']; $i++) { 
@@ -34,7 +39,8 @@ function generatePage($data, $array){
             }
 
         }else{
-            while(count($passw) < $data['lunghezzaPassw']) { 
+            
+            while(count($passw) < $data['lunghezzaPassw'] && $lunghezzaArray > count($passw) - 1) { 
                 // coordinata chiave
                 $randomKey = array_rand($arrayFiltred);
                 // coordinata valore
@@ -50,7 +56,7 @@ function generatePage($data, $array){
         
         // l'array diventa stringa
         return implode($passw);
-    // }
+    }
     
     
 };

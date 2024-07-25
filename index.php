@@ -20,7 +20,7 @@ $datiPassw = [
 include __DIR__ . "/otherFile/function.php";   
 
 $data = $_GET;
-var_dump($data);
+
 // se è settata e l'utente scrive qualcosa entra
 $password = '';
 if(isset($data) && !empty($data) && $data['lunghezzaPassw']){
@@ -30,6 +30,7 @@ if(isset($data) && !empty($data) && $data['lunghezzaPassw']){
     if($password){
         session_start();
         $_SESSION['password'] = $password;
+        $_SESSION['lunghezza'] = strlen($password);
         header("Location: ./otherFile/passwPage.php");
 
     }

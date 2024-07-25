@@ -16,7 +16,9 @@ session_start();
                 <div class="col d-flex align-items-center">
                     <span>La password generata è: <?php echo $_SESSION['password'] ?></span>
                 </div>
+                
             </div>
+            
             <button class="btn btn-secondary"><a href="../index.php">Torna indietro</a></button>
                 
     
