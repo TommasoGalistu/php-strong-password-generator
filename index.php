@@ -1,4 +1,11 @@
 <?php
+// dati speciali
+// !?&%$<>^+-*/()[]{}@#_=
+
+
+$data = $_GET;
+var_dump($data)
+
 
 ?>
 <!DOCTYPE html>
@@ -23,31 +30,33 @@
                     <span>Generare una password di lunghezza compresa fra 8 e 32</span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row sfondoTabella">
                 <div class="col d-flex flex-column align-items-start">
                     <p>Lunghezza password:</p>
                     <p>Consenti ripetizioni di uno o più caratteri:</p>
-                    <div>
-
-                        <button type="submit" class="btn btn-primary me-3">Invia</button>
-                        <button type="submit" class="btn btn-secondary me-3">Annulla</button>
-                    </div>
+                    
                 </div>
                 <div class="col">
                     <input type="number"><br>
-                    <div class="contPersonal pt-3 pb-3">
-                        <input type="radio">
-                        <label>Si</label>
-                        <input type="radio">
-                        <label>No</label>
-                    </div>
+                    
                     <div>
-                        <input id="lettere" name="tipo" value="lettere" type="checkbox">
-                        <label for="lettere" >Lettere</label><br>
-                        <input id="numeri" name="tipo" value="numeri" type="checkbox">
-                        <label for="numeri">Numeri</label><br>
-                        <input id="simboli" name="tipo" value="simboli" type="checkbox">
-                        <label for="simboli" >Simboli</label>
+                        <form action="index.php" method="GET" class="mt-3">
+                            <input id="si" name="caratteri" value="true" type="radio">
+                            <label for="si">Si</label>
+                            <input id="no" name="caratteri" value="false" type="radio">
+                            <label for="no">No</label><br>
+                            <input id="lettere" name="tipo" value="lettere" type="checkbox" >
+                            <label for="lettere" class="mt-3">Lettere</label><br>
+                            <input id="numeri" name="tipo" value="numeri" type="checkbox">
+                            <label for="numeri">Numeri</label><br>
+                            <input id="simboli" name="tipo" value="simboli" type="checkbox">
+                            <label for="simboli" >Simboli</label>
+                            <div class="mt-3">
+
+                                <button type="submit" class="btn btn-primary me-3">Invia</button>
+                                <button type="submit" class="btn btn-secondary me-3">Annulla</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -13,3 +13,10 @@ body {
 span {
   padding: 1rem;
 }
+
+.sfondoTabella {
+  background-color: #f6f7fa;
+  color: black;
+  padding: 1rem;
+  border-radius: 10px;
+}
