@@ -7,12 +7,13 @@ $datiPassw = [
         'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
     ],
     [
+        0 , 1, 2, 3, 4, 5, 6, 7, 8, 9
+    ],
+    [
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
         'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
     ],
-    [
-        0 , 1, 2, 3, 4, 5, 6, 7, 8, 9
-    ],
+    
     [
         '!', '?', '&', '%', '$', '<', '>', '^', '+', '-', '*', '/', '(', ')', 
         '[', ']', '{', '}', '@', '#', '_', '='
@@ -22,24 +23,18 @@ $datiPassw = [
 include __DIR__ . "/otherFile/function.php";   
 
 $data = $_GET;
-var_dump($data);
+
 // se è settata e l'utente scrive qualcosa entra
 $password = '';
 if(isset($data) && !empty($data) && $data['lunghezzaPassw']){
     $password = generatePage($data['lunghezzaPassw'], $datiPassw);
+    session_start();
+    $_SESSION['password'] = $password;
+    header("Location: ./otherFile/passwPage.php");
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="mycss.css">
-    <title>Password Generator</title>
-</head>
-<body>
+<?php include __DIR__ . '/otherFile/head.php' ?>
     <div class="window">
 
         <div class="container">
@@ -90,5 +85,4 @@ if(isset($data) && !empty($data) && $data['lunghezzaPassw']){
     
         </div>
     </div>
-</body>
-</html>
+    <?php include __DIR__ . '/otherFile/foot.php' ?>

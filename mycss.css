@@ -1,11 +1,13 @@
 body {
   background-color: black;
   color: white;
+  padding-top: 5rem;
 }
 .window {
   width: 60%;
   margin: auto;
 }
+
 .sfondoBlu {
   background-color: #c6f1fb;
   color: black;
@@ -19,4 +21,10 @@ span {
   color: black;
   padding: 1rem;
   border-radius: 10px;
+}
+
+/* css della pagina passw */
+a {
+  outline: none;
+  color: white;
 }
