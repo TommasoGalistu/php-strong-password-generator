@@ -6,15 +6,12 @@ function generatePage($data, $array){
         $passw = [];
         if(isset($data['lett'])){
             array_push($arrayFiltred, $array['lettere']);
-            
           }
         if(isset($data['num'])){
             array_push($arrayFiltred, $array['number']);
-            
           }
         if(isset($data['simb'])){
             array_push($arrayFiltred, $array['simboli']);
-            
           }
         
           
