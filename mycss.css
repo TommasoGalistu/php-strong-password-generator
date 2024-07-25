@@ -1,0 +1,15 @@
+body {
+  background-color: black;
+  color: white;
+}
+.window {
+  width: 60%;
+  margin: auto;
+}
+.sfondoBlu {
+  background-color: #c6f1fb;
+  color: black;
+}
+span {
+  padding: 1rem;
+}
